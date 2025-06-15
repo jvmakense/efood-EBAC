@@ -45,6 +45,7 @@ const StylesSidebar = styled.div`
 
         img {
             margin-right: 24px;
+            cursor: pointer;
 
             &:hover {
                 background-color: #ffffff20;

@@ -1,28 +1,43 @@
-import { useState } from "react";
 import StylesSidebar from "./Styles";
-import shoppingCart from "../../image/shopping-cart-svgrepo-com.svg";
+import close from "../../image/close.svg";
 import Card from "./components/Card";
+import type { RootState } from "../../store/store"
+import { useSelector } from "react-redux";
 
-const Sidebar = () => {
-    const [open, setOpen] = useState(true);
+type SidebarProps = {
+    open: boolean;
+    setOpen: (open: boolean) => void;
+}
+
+const Sidebar = ({open, setOpen} : SidebarProps) => {
+const produtos = useSelector((state: RootState) => state.cart.produtos);
+
+const total = produtos.reduce((acc, produto) => acc + produto.preco, 0);
 
     return (
         <StylesSidebar className={open ? "open" : ""}>
             <div className="offcanvas">
                 <div className="div-button" onClick={() => setOpen(!open)}>
-                    <img src={shoppingCart} alt="Carrinho" />
+                    <img src={close} alt="Carrinho" />
                 </div>
 
                 <div className="cards-product">
-                    <Card />
-                    <Card />
-                    <Card />
+                    {
+                        produtos.map((produto, key) =>(
+                            <Card key={key} produto={produto} />
+                        ))
+                    }
                 </div>
 
                 <div className="total">
                     <div className="total-info">
                         <h4>Valor Total</h4>
-                        <p>R$ 00,00</p>
+                        <p>
+                            {total.toLocaleString("pt-BR", {
+                                style: "currency",
+                                currency: "BRL",
+                            })}
+                        </p>
                     </div>
                     <button className="btn btn-primary">Continuar com a entrega</button>
                 </div>
