@@ -20,7 +20,6 @@ const CardsStyles = styled.div`
             width: 304px;
             height: 167px;
             object-fit: cover;
-            cursor: pointer;
         }
     }
 

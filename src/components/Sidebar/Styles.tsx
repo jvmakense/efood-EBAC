@@ -21,6 +21,12 @@ const StylesSidebar = styled.div`
         background-color: transparent;
         width: 100%;
         padding: 0 32px 0 16px;
+        
+        div {
+            div {
+                background-color: ${Cores.laranjaClaro};
+            }
+        }
     }
 
     .offcanvas {
@@ -29,6 +35,10 @@ const StylesSidebar = styled.div`
         width: 25%;
         height: 100%;
         background-color: ${Cores.laranjaEscuro};
+        overflow-y: auto;
+        div {
+            background-color: transparent;
+        }
     }
 
     img {
@@ -67,7 +77,6 @@ const StylesSidebar = styled.div`
         .total-info {
             display: flex;
             justify-content: space-between;
-            background-color: transparent;
 
             h4,
             p {
