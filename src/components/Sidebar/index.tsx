@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import AddressData from "./components/AddressData";
 import Payment from "./components/Payment";
 import { toggleState } from "../../store/cartSlice";
+import Conclusion from "./components/Conclusion";
 
 type SidebarProps = {
     open: boolean;
@@ -45,7 +46,19 @@ const Sidebar = ({ open, setOpen }: SidebarProps) => {
                             })}
                         </p>
                     </div>
-                    <button onClick={() => dispatch(toggleState())} className="btn btn-primary">Continuar com a entrega</button>
+                    <button
+                    onClick={() => {
+                        if (produtos.length === 0) {
+                            alert('Seu carrinho está vazio. Adicione um produto antes de continuar.');
+                        } else {
+                            dispatch(toggleState());
+                        }
+                    }}
+                    className="btn btn-primary"
+                    >
+                        Continuar com a entrega
+                    </button>
+
                 </div>
             </div>
         )}
@@ -53,6 +66,7 @@ const Sidebar = ({ open, setOpen }: SidebarProps) => {
             <div>
                 {formStep === "endereco" && <AddressData />}
                 {formStep === "pagamento" && <Payment />}
+                {formStep === "conclusao" && <Conclusion />}
             </div>
         )}
     </div>

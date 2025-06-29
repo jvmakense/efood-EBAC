@@ -63,10 +63,12 @@ button {
     font-weight: 700;
     cursor: pointer;
     transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    transition: 1s ease;
 
     &:hover {
         background-color: #FFEBDF;
         box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+        transition: 1s ease;
     }
 }
 `
